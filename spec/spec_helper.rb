@@ -1,9 +1,9 @@
+require "simplecov" unless ENV["DISABLE_COVERAGE"]
+
 require File.expand_path("../../lib/rectify", __FILE__)
 require File.expand_path("../../lib/rectify/rspec", __FILE__)
 
 require "rspec/collection_matchers"
-require "awesome_print"
-require "pry"
 require "action_controller"
 
 Dir["spec/support/**/*.rb"].each  { |f| require File.expand_path(f) }
