@@ -1,0 +1,51 @@
+# # Dependabot config
+#
+# > "Monitor vulnerabilities in dependencies used in your project and keep your dependencies up-to-date with Dependabot."
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+#
+# All package managers are configured to run daily, and will each open a maximum of 5 Pull Requests at a time. We have
+# configuration for the following ecosystems:
+#
+# * `bundler` (Ruby Gems)
+# * `github-actions`
+#
+# ## Update frequency
+#
+# Each ecosystem will be checked for updates daily. This will help us get back up to date as quickly as is comfortable,
+# and will allow us to tweak this config to ignore dependencies which can't be updated (more on that in the next
+# section). Once the application's dependencies are as up to date as we'd like them to be, we can relax this frequency
+# to a weekly or monthly.
+#
+# ## Who's responsible for updates?
+#
+# In short, everyone. But there may be cases where we need to get sign off from a particular set of code owners,
+# configured in Github. The config can be updated to notify these users, and to require their review before a dependency
+# update can be merged.
+#
+# ## Ignoring depdencies
+#
+# Over time we may need to prevent Dependabot from trying to upgrade a particular dependency. For example we don't
+# want to try to upgrade to Ruby 3 yet, because we know that won't work. We can also tell Dependabot to keep a
+# dependency up to date, but not to try and increase its major semver number.
+#
+# This config will change over time to meet those needs as the application is developed. Please make sure that the
+# reason for any version requirement restrictions are made clear in the Pull Request that updates this file.
+#
+version: 2
+
+updates:
+  # Ruby
+  - package-ecosystem: "bundler"
+    directory: "/"
+    insecure-external-code-execution: "allow"
+    schedule:
+      interval: "daily"
+    rebase-strategy: "disabled"
+    open-pull-requests-limit: 50
+    versioning-strategy: "increase"
+
+  # Github Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
