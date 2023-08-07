@@ -26,16 +26,13 @@
 #
 # 4. Add plugins
 #    `asdf plugin add bundler`
-#    `asdf plugin add nodejs`
 #    `asdf plugin add ruby`
-#    `asdf plugin add yarn`
 #
 # 5. Install your dependencies (from the repo root)
 #    `asdf install`
 #
 # 6. Install your dependencies' dependencies:
-#    `bundle`
-#    `yarn`
+#    `bundle install`
 #
 # -- YOU'RE DONE --
 #
