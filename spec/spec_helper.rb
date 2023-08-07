@@ -1,7 +1,7 @@
 require "simplecov" unless ENV["DISABLE_COVERAGE"]
 
-require File.expand_path("../../lib/rectify", __FILE__)
-require File.expand_path("../../lib/rectify/rspec", __FILE__)
+require File.expand_path("../lib/rectify", __dir__)
+require File.expand_path("../lib/rectify/rspec", __dir__)
 
 require "rspec/collection_matchers"
 require "action_controller"
@@ -23,7 +23,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.around(:each) do |test|
+  config.around do |test|
     ActiveRecord::Base.transaction do
       test.run
       raise ActiveRecord::Rollback
