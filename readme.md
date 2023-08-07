@@ -36,10 +36,10 @@ bundle install
 
 Currently, Rectify consists of the following concepts:
 
-* [Form Objects](#form-objects)
-* [Commands](#commands)
-* [Presenters](#presenters)
-* [Query Objects](#query-objects)
+- [Form Objects](#form-objects)
+- [Commands](#commands)
+- [Presenters](#presenters)
+- [Query Objects](#query-objects)
 
 You can use these separately or together to improve the structure of your Rails
 applications.
@@ -180,9 +180,9 @@ as it removes the `Form` suffix from the form class name by default.
 The model being mimicked affects two things about the form:
 
 1. The route path helpers to use as the url to post to, for example:
-`users_path`.
+   `users_path`.
 2. The parent key in the params hash that the controller receives, for example
-`user` in this case:
+   `user` in this case:
 
 ```ruby
 params = {
@@ -971,7 +971,7 @@ active_users_over_20 = ActiveUsers.new.merge(UsersOlderThan.new(20))
 active_users_over_20.count # => Returns number of active users over 20 years old
 ```
 
-The `.merge` class method of `Rectify::Query` accepts multiple `Rectify::Query` objects to union together.  This is the same as using the `|` operator on multiple `Rectify::Query` objects.
+The `.merge` class method of `Rectify::Query` accepts multiple `Rectify::Query` objects to union together. This is the same as using the `|` operator on multiple `Rectify::Query` objects.
 
 ```ruby
 active_users_over_20 = Rectify::Query.merge(
@@ -1084,9 +1084,9 @@ What you can now do it stub out these database calls when you use them in other
 classes. This improves your test code in a couple of ways:
 
 1. You need less database setup code within your tests. Normally you might use
-something like factory_girl to create records in your database and then when
-your tests run they query this set of data. Stubbing the queries within your
-tests can reduce this complexity.
+   something like factory_girl to create records in your database and then when
+   your tests run they query this set of data. Stubbing the queries within your
+   tests can reduce this complexity.
 2. Fewer database queries running and less factory usage means that your tests
 3. are doing less work and therefore will run a bit faster.
 
@@ -1201,7 +1201,7 @@ depending on the complexity of different areas of your application.
 
 Some tests (specifically for Query objects) we need access to a database that
 ActiveRecord can connect to. We use SQLite for this at present. When you run the
-specs with `bundle exec rspec`, the database will be created for you.
+specs with `bin/rspec`, the database will be created for you.
 
 There are some Rake tasks to help with the management of this test database
 using normal(ish) commands from Rails:

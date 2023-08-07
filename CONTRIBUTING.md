@@ -11,7 +11,7 @@ Firstly, you should fork the repository and clone that down to your machine. You
 should check that the specs run green. You can do this as follows:
 
 ```
-bundle exec rspec
+bin/rspec
 ```
 
 If you plan to make a large change or addition we suggest first opening an issue
@@ -32,11 +32,11 @@ changes to `master`.
 Please send a GitHub Pull Request upstream to the main project repository. Your
 change should include the following:
 
-* A clear description of the change
-* A clean git commit history (see [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/))
-* Specs that cover your change
-* All specs should pass
-* No Rubocop style violations
+- A clear description of the change
+- A clean git commit history (see [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/))
+- Specs that cover your change
+- All specs should pass
+- No Rubocop style violations
 
 Once we receive the Pull Request we will review it and may suggest changes.
 After the changes have been made (if required) we will merge the change into
