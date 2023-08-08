@@ -2,10 +2,7 @@ module Rectify
   class FormAttribute < SimpleDelegator
     def value_from(model_value)
       return declared_class.from_model(model_value) if form_object?
-
-      if collection_of_form_objects?
-        return model_value.map { |child| element_class.from_model(child) }
-      end
+      return model_value.map { |child| element_class.from_model(child) } if collection_of_form_objects?
 
       model_value
     end

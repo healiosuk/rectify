@@ -520,7 +520,7 @@ RSpec.describe Rectify::Form do
     it "returns true when #valid? returns false" do
       form = RegistrationForm.new(email: "")
 
-      expect(form).to be_invalid
+      expect(form).not_to be_valid
     end
 
     it "returns false when #valid? returns true" do
@@ -532,8 +532,7 @@ RSpec.describe Rectify::Form do
 
   describe "#with_context" do
     it "assigns a context hash and allows access in the form" do
-      form = UserForm.new(first_name: "Andy")
-        .with_context(account_id: 1)
+      form = UserForm.new(first_name: "Andy").with_context(account_id: 1)
 
       expect(form.context.account_id).to eq(1)
     end

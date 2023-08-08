@@ -35,7 +35,7 @@ RSpec.describe Rectify::ControllerHelpers do
       it "sets the attribute value on the presenter" do
         controller.presenter_without_attribute
 
-        expect(view_context.instance_variable_get("@last_name")).to eq("Pike")
+        expect(view_context.instance_variable_get(:@last_name)).to eq("Pike")
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe Rectify::ControllerHelpers do
       it "sets the attribute value on the presenter" do
         controller.no_presenter
 
-        expect(view_context.instance_variable_get("@name")).to eq("Fred")
+        expect(view_context.instance_variable_get(:@name)).to eq("Fred")
       end
     end
   end

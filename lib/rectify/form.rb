@@ -10,14 +10,8 @@ module Rectify
     def self.from_params(params, additional_params = {})
       params_hash = hash_from(params)
       mimicked_params = ensure_hash(params_hash[mimicked_model_name])
-
-      attributes_hash = params_hash
-        .merge(mimicked_params)
-        .merge(additional_params)
-
-      formatted_attributes = FormatAttributesHash
-        .new(attribute_set)
-        .format(attributes_hash)
+      attributes_hash = params_hash.merge(mimicked_params).merge(additional_params)
+      formatted_attributes = FormatAttributesHash.new(attribute_set).format(attributes_hash)
 
       new(formatted_attributes)
     end
@@ -63,7 +57,7 @@ module Rectify
     end
 
     def persisted?
-      id.present? && id.to_i > 0
+      id.present? && id.to_i.positive?
     end
 
     def valid?(options = {})
@@ -121,11 +115,8 @@ module Rectify
                    new_context
                  end
 
-      attributes_that_respond_to(:with_context)
-        .each { |f| f.with_context(context) }
-
-      array_attributes_that_respond_to(:with_context)
-        .each { |f| f.with_context(context) }
+      attributes_that_respond_to(:with_context).each { |f| f.with_context(context) }
+      array_attributes_that_respond_to(:with_context).each { |f| f.with_context(context) }
 
       self
     end
@@ -133,29 +124,19 @@ module Rectify
     private
 
     def form_attributes_valid?
-      attributes_that_respond_to(:valid?)
-        .map(&:valid?)
-        .all?
+      attributes_that_respond_to(:valid?).map(&:valid?).all?
     end
 
     def array_attributes_valid?
-      array_attributes_that_respond_to(:valid?)
-        .map(&:valid?)
-        .all?
+      array_attributes_that_respond_to(:valid?).map(&:valid?).all?
     end
 
     def attributes_that_respond_to(message)
-      attributes
-        .each_value
-        .select { |f| f.respond_to?(message) }
+      attributes.each_value.select { |f| f.respond_to?(message) }
     end
 
     def array_attributes_that_respond_to(message)
-      attributes
-        .each_value
-        .select { |a| a.is_a?(Array) }
-        .flatten
-        .select { |f| f.respond_to?(message) }
+      attributes.each_value.select { |a| a.is_a?(Array) }.flatten.select { |f| f.respond_to?(message) }
     end
   end
 end

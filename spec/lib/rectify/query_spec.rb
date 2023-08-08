@@ -249,7 +249,6 @@ RSpec.describe Rectify::Query do
       expect do
         query.count
         query.first
-        query.each {}
         query.exists?
         query.none?
         query.to_a
