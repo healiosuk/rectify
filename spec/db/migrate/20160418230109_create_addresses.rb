@@ -1,4 +1,4 @@
-class CreateAddresses < ActiveRecord::Migration[4.2]
+class CreateAddresses < ActiveRecord::Migration[7.0]
   def change
     create_table :addresses do |t|
       t.string :street,    null: false, default: ""
