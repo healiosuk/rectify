@@ -5,28 +5,22 @@ on:
       - master
   pull_request:
     types: [ready_for_review, opened, synchronize]
-
 jobs:
   test:
     if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-22.04
     name: RSpec
-    timeout-minutes: 20
-
+    timeout-minutes: 5
     strategy:
       fail-fast: false
-
     env:
       DISABLE_COVERAGE: "true"
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-
       - name: Run tests
-        run: bundle exec rspec
+        run: bin/rspec

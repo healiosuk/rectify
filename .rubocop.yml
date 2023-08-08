@@ -8,15 +8,11 @@ require:
 AllCops:
   Exclude:
     - "bin/**/*"
-    - "spec/db/schema.rb"
-    - "vendor/bundle"
+    - "spec/db/**/*"
+    - "vendor/**/*"
   NewCops: "enable"
   SuggestExtensions: false
   TargetRubyVersion: 2.7
-
-Metrics/BlockLength:
-  Exclude:
-    - "rectify.gemspec"
 
 Style/Documentation:
   Enabled: false
