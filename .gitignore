@@ -1,2 +1,4 @@
 *.gem
 *.sqlite3
+/coverage
+/spec/examples.txt
