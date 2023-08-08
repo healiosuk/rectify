@@ -56,7 +56,7 @@ RSpec.describe Rectify::Query do
         a = User.create!(first_name: "Amber", age: 10)
         m = User.create!(first_name: "Megan", age: 9)
 
-        expect(AllUsers.new.to_a).to match_array([a, m])
+        expect(AllUsers.new.to_a).to contain_exactly(a, m)
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.describe Rectify::Query do
         a = User.create!(first_name: "Amber", age: 10)
         m = User.create!(first_name: "Megan", age: 9)
 
-        expect(AllUsers.new.to_ary).to match_array([a, m])
+        expect(AllUsers.new.to_ary).to contain_exactly(a, m)
       end
     end
 
@@ -74,7 +74,7 @@ RSpec.describe Rectify::Query do
         User.create!(first_name: "Amber", age: 10)
         User.create!(first_name: "Megan", age: 9)
 
-        expect(AllUsers.new.map(&:age)).to match_array([10, 9])
+        expect(AllUsers.new.map(&:age)).to contain_exactly(10, 9)
       end
     end
 
@@ -221,7 +221,7 @@ RSpec.describe Rectify::Query do
         a = User.create!(first_name: "Amber", age: 10)
         m = User.create!(first_name: "Megan", age: 9)
 
-        expect(UsersOverUsingSql.new(0).to_a).to match_array([a, m])
+        expect(UsersOverUsingSql.new(0).to_a).to contain_exactly(a, m)
       end
     end
 
@@ -230,7 +230,7 @@ RSpec.describe Rectify::Query do
         a = User.create!(first_name: "Amber", age: 10)
         m = User.create!(first_name: "Megan", age: 9)
 
-        expect(UsersOverUsingSql.new(0).to_ary).to match_array([a, m])
+        expect(UsersOverUsingSql.new(0).to_ary).to contain_exactly(a, m)
       end
     end
 
@@ -239,7 +239,7 @@ RSpec.describe Rectify::Query do
         User.create!(first_name: "Amber", age: 10)
         User.create!(first_name: "Megan", age: 9)
 
-        expect(UsersOverUsingSql.new(0).map(&:age)).to match_array([10, 9])
+        expect(UsersOverUsingSql.new(0).map(&:age)).to contain_exactly(10, 9)
       end
     end
 
@@ -271,7 +271,7 @@ RSpec.describe Rectify::Query do
         users = UsersOverUsingSql.new(20) | UsersOverUsingSql.new(5)
 
         expect(users.count).to eq(2)
-        expect(users.to_a).to match_array([andy, amber])
+        expect(users.to_a).to contain_exactly(andy, amber)
       end
     end
 
@@ -289,7 +289,7 @@ RSpec.describe Rectify::Query do
         users = UsersOverUsingSql.new(20).merge(UsersOverUsingSql.new(5))
 
         expect(users.count).to eq(2)
-        expect(users.to_a).to match_array([andy, amber])
+        expect(users.to_a).to contain_exactly(andy, amber)
       end
     end
   end

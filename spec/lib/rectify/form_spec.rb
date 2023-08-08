@@ -28,18 +28,18 @@ RSpec.describe Rectify::Form do
   describe ".from_params" do
     let(:params) do
       ActionController::Parameters.new(
-        "id"       => "1",
+        "id" => "1",
         "other_id" => "2",
         "user" => {
-          "user"       => "andy38",
+          "user" => "andy38",
           "first_name" => "Andy",
-          "age"        => "38",
-          "colours"    => %w[red blue green],
-          "file"       => ActionDispatch::Http::UploadedFile.new(tempfile: Tempfile.new("file")),
+          "age" => "38",
+          "colours" => %w[red blue green],
+          "file" => ActionDispatch::Http::UploadedFile.new(tempfile: Tempfile.new("file")),
           "address" => {
-            "street"    => "1 High Street",
-            "town"      => "Wimbledon",
-            "city"      => "London",
+            "street" => "1 High Street",
+            "town" => "Wimbledon",
+            "city" => "London",
             "post_code" => "SW19 1AB"
           },
           "contacts" => [
