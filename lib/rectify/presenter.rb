@@ -9,7 +9,7 @@ module Rectify
 
     def method_missing(method_name, ...)
       if view_context.respond_to?(method_name)
-        view_context.public_send(method_name, ...)
+        view_context.public_send(method_name, ...) # rubocop:disable GitlabSecurity/PublicSend
       else
         super
       end

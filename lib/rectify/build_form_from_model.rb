@@ -8,8 +8,10 @@ module Rectify
     def build
       form.tap do
         matching_attributes.each do |a|
+          # rubocop:disable GitlabSecurity/PublicSend
           model_value = model.public_send(a.name)
           form.public_send("#{a.name}=", a.value_from(model_value))
+          # rubocop:enable GitlabSecurity/PublicSend
         end
 
         form.map_model(model)

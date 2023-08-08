@@ -41,7 +41,7 @@ module Rectify
 
     def method_missing(method_name, ...)
       if @caller.respond_to?(method_name, true)
-        @caller.send(method_name, ...)
+        @caller.send(method_name, ...) # rubocop:disable GitlabSecurity/PublicSend
       else
         super
       end

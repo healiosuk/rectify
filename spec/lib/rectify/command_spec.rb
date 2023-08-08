@@ -4,10 +4,13 @@ RSpec.describe Rectify::Command do
 
     context "with no arguments" do
       it "instantiates and invokes #call" do
-        expect(NoArgsCommand).to receive(:new).with(no_args) { instance }
-        expect(instance).to receive(:call)
+        allow(NoArgsCommand).to receive(:new).with(no_args) { instance }
+        allow(instance).to receive(:call)
 
         NoArgsCommand.call
+
+        expect(NoArgsCommand).to have_received(:new).with(no_args) { instance }
+        expect(instance).to have_received(:call)
       end
 
       it "returns broadcast events with their result (single)" do
@@ -35,14 +38,18 @@ RSpec.describe Rectify::Command do
 
     context "with arguments" do
       it "instantiates with the same arguments and invokes #call" do
-        expect(ArgsCommand).to receive(:new).with(:a, :b, :c) { instance }
-        expect(instance).to receive(:call)
+        allow(ArgsCommand).to receive(:new).with(:a, :b, :c) { instance }
+        allow(instance).to receive(:call)
 
         ArgsCommand.call(:a, :b, :c)
+
+        expect(ArgsCommand).to have_received(:new).with(:a, :b, :c) { instance }
+        expect(instance).to have_received(:call)
       end
     end
   end
 
+  # rubocop:disable RSpec/InstanceVariable
   describe "#on" do
     def success
       @success = true
@@ -81,4 +88,5 @@ RSpec.describe Rectify::Command do
       expect(@private).to be(true)
     end
   end
+  # rubocop:enable RSpec/InstanceVariable
 end

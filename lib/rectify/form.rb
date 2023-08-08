@@ -94,7 +94,7 @@ module Rectify
     end
 
     def attributes_with_values
-      attributes.reject { |attribute| public_send(attribute).nil? }
+      attributes.reject { |attribute| public_send(attribute).nil? } # rubocop:disable GitlabSecurity/PublicSend
     end
 
     def map_model(model)
@@ -110,7 +110,7 @@ module Rectify
 
     def with_context(new_context)
       @context = if new_context.is_a?(Hash)
-                   OpenStruct.new(new_context)
+                   OpenStruct.new(new_context) # rubocop:disable Style/OpenStructUse
                  else
                    new_context
                  end
