@@ -22,4 +22,4 @@ jobs:
           bundler-cache: true
 
       - name: Run rubocop
-        run: bin/rubocop
+        run: bundle exec rubocop
