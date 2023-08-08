@@ -14,3 +14,13 @@ guard(:rspec, cmd: "bin/rspec") do
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
 end
+
+guard(:rubocop, all_on_start: false) do
+  watch("Gemfile")
+  watch("Guardfile")
+  watch("Rakefile")
+  watch("config.ru")
+  watch(/.+\.rake$/)
+  watch(/.+\.rb$/)
+  watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
+end
