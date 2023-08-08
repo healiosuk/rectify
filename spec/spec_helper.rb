@@ -1,4 +1,7 @@
-require "simplecov" unless ENV["DISABLE_COVERAGE"]
+unless ENV["DISABLE_COVERAGE"]
+  require "simplecov"
+  SimpleCov.start
+end
 
 require File.expand_path("../lib/rectify", __dir__)
 require File.expand_path("../lib/rectify/rspec", __dir__)
@@ -15,6 +18,8 @@ db_config = YAML.safe_load(File.open("spec/config/database.yml"))
 ActiveRecord::Base.establish_connection(db_config)
 
 RSpec.configure do |config|
+  config.include Rectify::RSpec::Helpers
+
   config.expect_with(:rspec) do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -23,6 +28,14 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.disable_monkey_patching!
+
+  config.backtrace_exclusion_patterns << /gems/
+  config.default_formatter = "doc" if config.files_to_run.one?
+  config.example_status_persistence_file_path = "spec/examples.txt"
+  config.filter_run_when_matching :focus
+  config.order = :random
+
   config.around do |test|
     ActiveRecord::Base.transaction do
       test.run
@@ -30,12 +43,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.formatter = :documentation
-  config.disable_monkey_patching!
-  config.backtrace_exclusion_patterns << /gems/
-  config.order = "random"
-
-  config.include Rectify::RSpec::Helpers
+  Kernel.srand config.seed
 end
 
 Rectify::RSpec::DatabaseReporter.enable
