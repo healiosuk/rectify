@@ -5,5 +5,5 @@ class ContactForm < Rectify::Form
   attribute :number, String
   attribute :phones, Array[PhoneForm]
 
-  validates :name, :presence => true
+  validates :name, presence: true
 end
