@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activemodel", "~> 7.0"
   spec.add_dependency "activerecord", "~> 7.0"
   spec.add_dependency "activesupport", "~> 7.0"
-  spec.add_dependency "virtus", "~> 1.0"
+  spec.add_dependency "virtus", ">= 1", "< 3"
   spec.add_dependency "wisper", "~> 1.6"
 end

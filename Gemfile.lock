@@ -5,7 +5,7 @@ PATH
       activemodel (~> 7.0)
       activerecord (~> 7.0)
       activesupport (~> 7.0)
-      virtus (~> 1.0)
+      virtus (>= 1, < 3)
       wisper (~> 1.6)
 
 GEM
@@ -52,7 +52,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.5.0)
     docile (1.4.0)
-    equalizer (0.0.11)
     erubi (1.12.0)
     ffi (1.15.5)
     formatador (1.1.0)
@@ -185,11 +184,10 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
-    virtus (1.0.5)
+    virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
-      equalizer (~> 0.0, >= 0.0.9)
     wisper (1.6.1)
     wisper-rspec (1.1.0)
 
