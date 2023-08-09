@@ -1,5 +1,5 @@
 class UsersOver < Rectify::Query
-  def initialize(age)
+  def initialize(age) # rubocop:disable Lint/MissingSuper
     @age = age
   end
 

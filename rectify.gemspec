@@ -1,29 +1,29 @@
-require File.expand_path("../lib/rectify/version", __FILE__)
+require File.expand_path("lib/rectify/version", __dir__)
 
-Gem::Specification.new do |s|
-  s.name          = "rectify"
-  s.version       = Rectify::VERSION
-  s.summary       = "Improvements for building Rails apps"
-  s.description   = "Build Rails apps in a more maintainable way"
-  s.authors       = ["Andy Pike"]
-  s.email         = "andy@andypike.com"
-  s.files         = Dir["LICENSE.txt", "readme.md", "lib/**/*"]
-  s.homepage      = "https://github.com/andypike/rectify"
-  s.license       = "MIT"
-  s.require_paths = ["lib"]
+Gem::Specification.new do |spec|
+  spec.name = "rectify"
 
-  s.add_dependency "activemodel",   ">= 4.1.0"
-  s.add_dependency "activerecord",  ">= 4.1.0"
-  s.add_dependency "activesupport", ">= 4.1.0"
-  s.add_dependency "virtus",        "~> 1.0.5"
-  s.add_dependency "wisper",        ">= 1.6.1"
+  spec.authors = ["Andy Pike", "Jonic Linley"]
+  spec.description = "Build Rails apps in a more maintainable way"
+  spec.email = ["andy@andypike.com", "jonic.linley@healiospec.org.uk"]
+  spec.homepage = "https://github.com/healiosuk/rectify"
+  spec.summary = "Improvements for building Rails apps"
+  spec.version = Rectify::VERSION
 
-  s.add_development_dependency "actionpack",    ">= 4.1.0"
-  s.add_development_dependency "awesome_print", "~> 1.6"
-  s.add_development_dependency "pry",           "~> 0.11.3"
-  s.add_development_dependency "rake"
-  s.add_development_dependency "rspec", "~> 3.8"
-  s.add_development_dependency "rspec-collection_matchers", "~> 1.1"
-  s.add_development_dependency "rubocop"
-  s.add_development_dependency "sqlite3"
+  spec.files = Dir["LICENSE.txt", "readme.md", "lib/**/*"]
+  spec.license = "MIT"
+  spec.require_paths = ["lib"]
+  spec.required_ruby_version = ">= 2.7.8"
+
+  spec.metadata["allowed_push_host"] = "https://rubygemspec.pkg.github.com/healiosuk"
+  spec.metadata["github_repo"] = "ssh://github.com/healiosuk/rectify"
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["rubygems_mfa_required"] = "true"
+  spec.metadata["source_code_uri"] = spec.homepage
+
+  spec.add_dependency "activemodel", "~> 7.0"
+  spec.add_dependency "activerecord", "~> 7.0"
+  spec.add_dependency "activesupport", "~> 7.0"
+  spec.add_dependency "virtus", "~> 1.0"
+  spec.add_dependency "wisper", "~> 1.6"
 end

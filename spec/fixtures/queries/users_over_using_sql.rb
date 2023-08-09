@@ -1,7 +1,9 @@
+require "active_support/core_ext/string"
+
 class UsersOverUsingSql < Rectify::Query
   include Rectify::SqlQuery
 
-  def initialize(age)
+  def initialize(age) # rubocop:disable Lint/MissingSuper
     @age = age
   end
 
@@ -19,6 +21,6 @@ class UsersOverUsingSql < Rectify::Query
   end
 
   def params
-    { :age => @age }
+    { age: @age }
   end
 end

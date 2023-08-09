@@ -9,12 +9,12 @@ class UserForm < Rectify::Form
   attribute :age,         Integer
   attribute :colours,     Array
   attribute :address,     AddressForm
-  attribute :contacts,    Array[ContactForm]
+  attribute :contacts,    [ContactForm]
   attribute :order_count, Integer
   attribute :other_id,    Integer
   attribute :last_login_date, String
 
-  validates :first_name, :presence => true
+  validates :first_name, presence: true
 
   def map_model(model)
     self.last_login_date = model.last_logged_in.strftime("%d/%m/%Y")

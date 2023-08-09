@@ -1,0 +1,40 @@
+#
+# # asdf config
+#
+# https://asdf-vm.com/ - Manage multiple runtime versions with a single CLI tool
+#
+# This guide assumes you're running on a Mac, with Homebrew, and the default Mac zsh shell.
+# If this is not your setup, then the asdf docs will be able to help you get setup:
+# https://asdf-vm.com/guide/getting-started.html
+#
+# 1. Install asdf
+#    `brew install asdf`
+#
+# 2. Add to your environment:
+#    `echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc`
+#      - OR enable the asdf plugin for ohmyz.sh:
+#    `https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf`
+#
+# -- RESTART YOUR TERMINAL SESSION --
+#
+# 3. Add plugins dependencies
+#    Node requires installation of gpg and gawk. Ruby requires OpenSSL.
+#      `brew install gawk gpg openssl@1.1`
+#
+#    To prevent compiling a new copy of openssl with each new version of Ruby:
+#      `echo -e '\nexport RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"' >> ${ZDOTDIR:-~}/.zshrc`
+#
+# 4. Add plugins
+#    `asdf plugin add bundler`
+#    `asdf plugin add ruby`
+#
+# 5. Install your dependencies (from the repo root)
+#    `asdf install`
+#
+# 6. Install your dependencies' dependencies:
+#    `bundle install`
+#
+# -- YOU'RE DONE --
+#
+bundler 2.4.18
+ruby 2.7.8

@@ -1,5 +1,5 @@
 class ScopedUsersOver < Rectify::Query
-  def initialize(age, scope = AllUsers.new)
+  def initialize(age, scope = AllUsers.new) # rubocop:disable Lint/MissingSuper
     @age   = age
     @scope = scope
   end

@@ -6,19 +6,10 @@ require "active_record"
 namespace :db do
   db_config = YAML.safe_load(File.open("spec/config/database.yml"))
 
-  def activerecord_below_5_2?
-    ActiveRecord.version.release < Gem::Version.new("5.2.0")
-  end
-
   desc "Migrate the database"
   task :migrate do
     ActiveRecord::Base.establish_connection(db_config)
-
-    if activerecord_below_5_2?
-      ActiveRecord::Migrator.migrate("spec/db/migrate")
-    else
-      ActiveRecord::MigrationContext.new("spec/db/migrate").migrate
-    end
+    ActiveRecord::MigrationContext.new("spec/db/migrate").migrate
 
     Rake::Task["db:schema"].invoke
     puts "Database migrated."
@@ -44,15 +35,14 @@ namespace :g do
     path      = File.expand_path("#{folder}/#{timestamp}_#{name}.rb", __FILE__)
 
     migration_class = name.split("_").map(&:capitalize).join
-
-    File.open(path, "w") do |file|
-      file.write <<-MIGRATION.strip_heredoc
-        class #{migration_class} < ActiveRecord::Migration[5.2]
-          def change
-          end
+    migration = <<-MIGRATION.strip_heredoc
+      class #{migration_class} < ActiveRecord::Migration[7.0]
+        def change
         end
-      MIGRATION
-    end
+      end
+    MIGRATION
+
+    File.write(path, migration)
 
     puts "Migration #{path} created"
     abort # needed stop other tasks

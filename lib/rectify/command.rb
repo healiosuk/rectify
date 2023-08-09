@@ -6,12 +6,10 @@ module Rectify
       @events = {}
     end
 
-    # rubocop:disable Style/MethodMissing
     def method_missing(method_name, *args, &_block)
       args = args.first if args.size == 1
       @events[method_name] = args
     end
-    # rubocop:enable Style/MethodMissing
 
     def respond_to_missing?(_method_name, _include_private = false)
       true
@@ -26,7 +24,7 @@ module Rectify
 
       command = new(*args)
       command.subscribe(event_recorder)
-      command.evaluate(&block) if block_given?
+      command.evaluate(&block) if block
       command.call
 
       event_recorder.events
@@ -38,12 +36,12 @@ module Rectify
     end
 
     def transaction(&block)
-      ActiveRecord::Base.transaction(&block) if block_given?
+      ActiveRecord::Base.transaction(&block) if block
     end
 
-    def method_missing(method_name, *args, &block)
+    def method_missing(method_name, ...)
       if @caller.respond_to?(method_name, true)
-        @caller.send(method_name, *args, &block)
+        @caller.send(method_name, ...) # rubocop:disable GitlabSecurity/PublicSend
       else
         super
       end

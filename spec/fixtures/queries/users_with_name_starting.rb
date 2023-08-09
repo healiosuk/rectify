@@ -1,5 +1,5 @@
 class UsersWithNameStarting < Rectify::Query
-  def initialize(letter)
+  def initialize(letter) # rubocop:disable Lint/MissingSuper
     @letter = letter
   end
 

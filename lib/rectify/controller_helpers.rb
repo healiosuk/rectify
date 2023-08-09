@@ -5,8 +5,7 @@ module Rectify
     end
 
     def present(presenter, options = {})
-      presenter_type = options.fetch(:for) { :template }
-
+      presenter_type = options.fetch(:for, :template)
       presenter.attach_controller(self)
       rectify_presenters[presenter_type] = presenter
     end
@@ -18,7 +17,7 @@ module Rectify
     def expose(presentation_data)
       presentation_data.each do |attribute, value|
         if presenter.respond_to?("#{attribute}=")
-          presenter.public_send("#{attribute}=", value)
+          presenter.public_send("#{attribute}=", value) # rubocop:disable GitlabSecurity/PublicSend
         else
           instance_variable_set("@#{attribute}", value)
         end

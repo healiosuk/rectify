@@ -1,36 +1,29 @@
-inherit_from: .rubocop_todo.yml
+inherit_from: ".rubocop_todo.yml"
+
+require:
+  - "rubocop-gitlab-security"
+  - "rubocop-performance"
+  - "rubocop-rspec"
 
 AllCops:
   Exclude:
-    - 'bin/**/*'
-    - 'spec/db/schema.rb'
+    - "bin/**/*"
+    - "spec/db/**/*"
+    - "vendor/**/*"
+  NewCops: "enable"
+  SuggestExtensions: false
+  TargetRubyVersion: 2.7
 
 Style/Documentation:
   Enabled: false
-
-Style/HashSyntax:
-  EnforcedStyle: hash_rockets
-
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  EnforcedStyle: "double_quotes"
 
-Layout/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
-
-Layout/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-
-Layout/IndentationWidth:
-  Width: 2  
-
-Metrics/ClassLength:
-  Max: 115
-  Exclude:
-    - 'spec/**/*_spec.rb'
-
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*_spec.rb'
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false

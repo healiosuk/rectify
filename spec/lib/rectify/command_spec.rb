@@ -4,45 +4,52 @@ RSpec.describe Rectify::Command do
 
     context "with no arguments" do
       it "instantiates and invokes #call" do
-        expect(NoArgsCommand).to receive(:new).with(no_args) { instance }
-        expect(instance).to receive(:call)
+        allow(NoArgsCommand).to receive(:new).with(no_args) { instance }
+        allow(instance).to receive(:call)
 
         NoArgsCommand.call
+
+        expect(NoArgsCommand).to have_received(:new).with(no_args) { instance }
+        expect(instance).to have_received(:call)
       end
 
       it "returns broadcast events with their result (single)" do
         events = ReturnSingleResultCommand.call
 
-        expect(events).to eq(:ok => "This is a result")
+        expect(events).to eq(ok: "This is a result")
       end
 
       it "returns broadcast events with their result (multiple)" do
         events = ReturnMultiResultCommand.call
 
-        expect(events).to eq(:ok => [1, 2, 3])
+        expect(events).to eq(ok: [1, 2, 3])
       end
 
       it "returns broadcast all events with their result" do
         events = ReturnMultiEventMultiResultCommand.call
 
         expect(events).to eq(
-          :ok        => [1, 2, 3],
-          :published => "The command works",
-          :next      => []
+          ok: [1, 2, 3],
+          published: "The command works",
+          next: []
         )
       end
     end
 
     context "with arguments" do
       it "instantiates with the same arguments and invokes #call" do
-        expect(ArgsCommand).to receive(:new).with(:a, :b, :c) { instance }
-        expect(instance).to receive(:call)
+        allow(ArgsCommand).to receive(:new).with(:a, :b, :c) { instance }
+        allow(instance).to receive(:call)
 
         ArgsCommand.call(:a, :b, :c)
+
+        expect(ArgsCommand).to have_received(:new).with(:a, :b, :c) { instance }
+        expect(instance).to have_received(:call)
       end
     end
   end
 
+  # rubocop:disable RSpec/InstanceVariable
   describe "#on" do
     def success
       @success = true
@@ -81,4 +88,5 @@ RSpec.describe Rectify::Command do
       expect(@private).to be(true)
     end
   end
+  # rubocop:enable RSpec/InstanceVariable
 end
