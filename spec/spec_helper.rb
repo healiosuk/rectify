@@ -1,6 +1,9 @@
 unless ENV["DISABLE_COVERAGE"]
   require "simplecov"
-  SimpleCov.start
+  SimpleCov.start do
+    enable_coverage :branch
+    add_filter "spec"
+  end
 end
 
 require File.expand_path("../lib/rectify", __dir__)
