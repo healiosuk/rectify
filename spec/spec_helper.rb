@@ -1,3 +1,13 @@
+# Setup Ruby deprecation warnings
+# See https://rubyapi.org/2.7/o/warning
+#
+# Required before Gems to capture warnings from dependecies as well as our application code, will highlight dependencies
+# that need to be upgraded or removed.
+#
+# See the `RubyWarnings` module in `config/initializers/ruby_warnings.rb` to see how we're selectively handling Ruby
+# warnings, and how we're able to use that information to aid Ruby upgrades.
+Warning[:deprecated] = true
+
 unless ENV["DISABLE_COVERAGE"]
   require "simplecov"
   SimpleCov.start do
@@ -34,7 +44,7 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
 
   config.backtrace_exclusion_patterns << /gems/
-  config.default_formatter = "doc" if config.files_to_run.one?
+  config.default_formatter = config.files_to_run.one? ? "doc" : "Fuubar"
   config.example_status_persistence_file_path = "spec/examples.txt"
   config.filter_run_when_matching :focus
   config.order = :random
