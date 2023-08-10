@@ -1,13 +1,3 @@
-# Setup Ruby deprecation warnings
-# See https://rubyapi.org/2.7/o/warning
-#
-# Required before Gems to capture warnings from dependecies as well as our application code, will highlight dependencies
-# that need to be upgraded or removed.
-#
-# See the `RubyWarnings` module in `config/initializers/ruby_warnings.rb` to see how we're selectively handling Ruby
-# warnings, and how we're able to use that information to aid Ruby upgrades.
-Warning[:deprecated] = true
-
 unless ENV["DISABLE_COVERAGE"]
   require "simplecov"
   SimpleCov.start do
