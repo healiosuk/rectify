@@ -18,4 +18,4 @@ jobs:
         with:
           bundler-cache: true
       - name: Run rubocop
-        run: bin/rubocop
+        run: bin/rubocop --format fuubar

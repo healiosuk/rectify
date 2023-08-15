@@ -1,3 +1,17 @@
+module WarningHandlers
+  module Ruby
+    class Warning < StandardError; end
+
+    def warn(message)
+      logger = Logger.new("tmp/log/warnings.log")
+      logger.warn(message)
+    end
+  end
+end
+
+Warning.singleton_class.prepend(WarningHandlers::Ruby)
+Warning[:deprecated] = true
+
 unless ENV["DISABLE_COVERAGE"]
   require "simplecov"
   SimpleCov.start do
@@ -34,7 +48,7 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
 
   config.backtrace_exclusion_patterns << /gems/
-  config.default_formatter = "doc" if config.files_to_run.one?
+  config.default_formatter = config.files_to_run.one? ? "doc" : "Fuubar"
   config.example_status_persistence_file_path = "spec/examples.txt"
   config.filter_run_when_matching :focus
   config.order = :random
