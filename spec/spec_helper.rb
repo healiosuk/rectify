@@ -1,3 +1,17 @@
+module WarningHandlers
+  module Ruby
+    class Warning < StandardError; end
+
+    def warn(message)
+      logger = Logger.new("tmp/log/warnings.log")
+      logger.warn(message)
+    end
+  end
+end
+
+Warning.singleton_class.prepend(WarningHandlers::Ruby)
+Warning[:deprecated] = true
+
 unless ENV["DISABLE_COVERAGE"]
   require "simplecov"
   SimpleCov.start do
