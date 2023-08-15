@@ -13,6 +13,18 @@ guard(:rspec, cmd: "bin/rspec") do
   # Ruby files
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
+
+  fixtures = [
+    { dir: "commands", spec: "command" },
+    { dir: "controllers", spec: "controller_helpers" },
+    { dir: "forms", spec: "form" },
+    { dir: "presenters", spec: "presenter" },
+    { dir: "queries", spec: "query" }
+  ]
+
+  fixtures.each do |dir:, spec:|
+    watch(%r{^spec/fixtures/#{dir}/.+\.rb$}) { rspec.spec.call("lib/rectify/#{spec}") }
+  end
 end
 
 guard(:rubocop, all_on_start: false) do
