@@ -46,6 +46,18 @@ RSpec.describe Rectify::Command do
         expect(ArgsCommand).to have_received(:new).with(:a, :b, :c) { instance }
         expect(instance).to have_received(:call)
       end
+
+      it "supports named arguments" do
+        NamedArgsCommand.call(
+          "Andy",
+          "Pike",
+          height: 185,
+          location: "UK",
+          hobbies: ["running", "climbing", "fishing with grenades"]
+        ) do
+          on(:ok) { |message| expect(message).to be_a(String) }
+        end
+      end
     end
   end
 
