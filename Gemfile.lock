@@ -59,7 +59,7 @@ GEM
     fuubar (2.5.1)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
-    guard (2.18.0)
+    guard (2.18.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
       lumberjack (>= 1.0.12, < 2.0)
