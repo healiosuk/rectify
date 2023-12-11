@@ -180,7 +180,7 @@ GEM
     simplecov_json_formatter (0.1.4)
     sqlite3 (1.6.3)
       mini_portile2 (~> 2.8.0)
-    syntax_suggest (1.1.0)
+    syntax_suggest (2.0.0)
     thor (1.2.2)
     thread_safe (0.3.6)
     tzinfo (2.0.6)
