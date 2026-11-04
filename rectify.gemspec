@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["LICENSE.txt", "readme.md", "lib/**/*"]
   spec.license = "MIT"
   spec.require_paths = ["lib"]
-  spec.required_ruby_version = ">= 2.7.8"
+  spec.required_ruby_version = ">= 3.1"
 
   spec.metadata["allowed_push_host"] = "https://rubygemspec.pkg.github.com/healiosuk"
   spec.metadata["github_repo"] = "ssh://github.com/healiosuk/rectify"
