@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["LICENSE.txt", "readme.md", "lib/**/*"]
   spec.license = "MIT"
   spec.require_paths = ["lib"]
-  spec.required_ruby_version = ">= 2.7.8"
+  spec.required_ruby_version = ">= 3.1"
 
   spec.metadata["allowed_push_host"] = "https://rubygemspec.pkg.github.com/healiosuk"
   spec.metadata["github_repo"] = "ssh://github.com/healiosuk/rectify"
@@ -21,9 +21,9 @@ Gem::Specification.new do |spec|
   spec.metadata["rubygems_mfa_required"] = "true"
   spec.metadata["source_code_uri"] = spec.homepage
 
-  spec.add_dependency "activemodel", "~> 7.0"
-  spec.add_dependency "activerecord", "~> 7.0"
-  spec.add_dependency "activesupport", "~> 7.0"
+  spec.add_dependency "activemodel", ">= 7.2", "< 9"
+  spec.add_dependency "activerecord", ">= 7.2", "< 9"
+  spec.add_dependency "activesupport", ">= 7.2", "< 9"
   spec.add_dependency "virtus", "~> 2.0"
   spec.add_dependency "wisper", "~> 2.0"
 end

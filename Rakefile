@@ -21,7 +21,7 @@ namespace :db do
     require "active_record/schema_dumper"
     filename = "spec/db/schema.rb"
     File.open(filename, "w:utf-8") do |file|
-      ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+      ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection_pool, file)
     end
   end
 end
