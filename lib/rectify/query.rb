@@ -6,7 +6,7 @@ module Rectify
       queries.reduce(NullQuery.new) { |a, e| a.merge(e) }
     end
 
-    def initialize(scope = ActiveRecord::NullRelation)
+    def initialize(scope = nil)
       @scope = scope
     end
 
