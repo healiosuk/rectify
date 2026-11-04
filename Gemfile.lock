@@ -203,7 +203,6 @@ GEM
     simplecov_json_formatter (0.1.4)
     sqlite3 (2.10.2)
       mini_portile2 (~> 2.8.0)
-    syntax_suggest (3.0.0)
     thor (1.2.2)
     thread_safe (0.3.6)
     timeout (0.6.1)
@@ -239,7 +238,6 @@ DEPENDENCIES
   rubocop-rspec
   simplecov
   sqlite3
-  syntax_suggest
   wisper-rspec
 
 BUNDLED WITH
